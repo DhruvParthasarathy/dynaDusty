@@ -1,0 +1,68 @@
+Fundamentals of Dynamic Programming
+
+
+***********************************************
+Chapter: 1. Introduction to Dynamic Programming
+***********************************************
+
+
+-----------------------------------------------
+What is dynamic programming?
+-----------------------------------------------
+
+- Dynamic programming is a technique for computing a recursive algorithm that has highly overlapping sub problems, and we solve the sub problems only once. 
+
+- There are multiple techniques for solving recursive problems - the first is known as divide and conquer. This is used when we can break down small problems into smaller chunks that have 0 overlapp. 
+
+- Whereas dynamic programing is used in cases where the sub-problems have an overlap among them 
+
+
+-----------------------------------------------
+The Fibonacci sequence
+-----------------------------------------------
+
+- For computing Fibonacci numbers using recursion we notice that when we draw the tree structure, we end up with multiple leaf nodes that can be avoided if we somehow save the previous value rather than introducing a new sub tree during each recursive call 
+
+
+-----------------------------------------------
+Speeding up calculations with memoization
+-----------------------------------------------
+
+- Memoization is a technique that is used for speeding up computation by caching results of repeated calculations 
+
+# calculating fibonacci series using memoization
+
+def fib_n(n):
+	fibN1 = 1
+	fibN2 = 1
+	num = 1
+	for i in range(n):	
+		if((i+1)>2):
+			num = fibN1 + fibN2			
+			fibN1 = fibN2
+			fibN2 = num
+		
+	return num 
+
+# Calculating fibonacci series by recursion - without any memoization - worst possible way
+
+def fibRec(n):
+	if(n == 1 or n == 0):
+		return 1
+	else: return fibRec(int(n)-1) + fibRec(int(n)-2) 
+
+
+-----------------------------------------------
+Video: Bottom-up approach to dynamic programming
+-----------------------------------------------
+
+- While memoization speeds up computation by caching it compensates by taking up memory to store the cached values 
+
+- This orderly nature of larger problems having a dependency on the smaller problems and not the other way around is called a direct acyclic graph or DAG. A point to be noted here is that there are no cycles formed.  A problem downstream has no dependency on any problem before it 
+
+- When we have a closer look at the order in which he fibonacci series is calculated, we see that for finding the fib value of a larger number we need the values of smaller numbers first, this can eventually be traced back to the values needed for the first few numbers in the series. 
+
+- In bottom up programmig approach, since we solve and forget the smaller problems as we move on the the larger problems just with the accumulated result, we also save on memory and the computation time is close to linear 
+
+- When we can represent a recursive problem as a Directed Acyclic graph, we can use Bottom - up programming approach to solve the smallest problem first and move to the larger problems 
+
